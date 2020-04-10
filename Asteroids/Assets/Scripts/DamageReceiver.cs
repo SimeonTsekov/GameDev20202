@@ -30,7 +30,7 @@ public class DamageReceiver : MonoBehaviour
         GameObject fx = Instantiate(DestructionFx, transform.position, transform.rotation);
         Destroy(fx, DestructionFXTimeToLive);
         Destroy(gameObject);
-        //GameStateController.Instance.IncrementPlayerScore(ScoreOnDeath);
+        GameStateController.Instance.IncrementPlayerScore(ScoreOnDeath);
     }
     private void SpawnDeathObject(Vector3 hitDirection, float angle)
     {

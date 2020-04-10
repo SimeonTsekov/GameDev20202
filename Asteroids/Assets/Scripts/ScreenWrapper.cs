@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ScreenWrapper : MonoBehaviour
 {
+    GameObject clone;
 
     void Update()
     {

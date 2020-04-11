@@ -9,8 +9,14 @@ public class GameOverController : MonoBehaviour
     {
         GameStateController.Instance.RestartGame();
     }
+
     public void OnQuit()
     {
-        Application.Quit();
+        GameStateController.Instance.QuitGame();
+    }
+
+    public void OnResetMinerals()
+    {
+        GameStateController.Instance.ResetOre();
     }
 }

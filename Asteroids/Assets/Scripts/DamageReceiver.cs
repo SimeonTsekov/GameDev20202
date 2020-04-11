@@ -10,7 +10,7 @@ public class DamageReceiver : MonoBehaviour
     public float SpawnDistance = 2;
     public float DeflectionAngle = 45;
     public bool DebugDraw = false;
-    public uint ScoreOnDeath = 5;
+    public uint oreOnDeath = 5;
 
     public void ReceiveHit(GameObject damageDealer)
     {
@@ -30,7 +30,7 @@ public class DamageReceiver : MonoBehaviour
         GameObject fx = Instantiate(DestructionFx, transform.position, transform.rotation);
         Destroy(fx, DestructionFXTimeToLive);
         Destroy(gameObject);
-        GameStateController.Instance.IncrementPlayerScore(ScoreOnDeath);
+        GameStateController.Instance.IncrementPlayerOre(oreOnDeath);
     }
     private void SpawnDeathObject(Vector3 hitDirection, float angle)
     {

@@ -8,29 +8,50 @@ public class GameStateController : MonoBehaviour
     public string GameOverScene = "GameOver";
     public string MainScene = "MainScene";
     public float GameOverDelay = 3;
-    public uint PlayerScore { get; private set;} = 0;
+    public uint PlayerOre { get; private set;} = 0;
     public static GameStateController Instance { get; private set; }
+    
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            if (SaveSystem.LoadPlayer() != null)
+            {
+                PlayerOre = SaveSystem.LoadPlayer().playerOre;
+            }
         }
         else
         {
             Destroy(gameObject);
         }
     }
-    public void IncrementPlayerScore(uint scoreToAdd)
+    
+    public void IncrementPlayerOre(uint oreToAdd)
     {
-        PlayerScore += scoreToAdd;
+        PlayerOre += oreToAdd;
     }
+    
     public void RestartGame()
     {
-        PlayerScore = 0;
+        SaveSystem.SavePlayer(this);
         SceneManager.LoadScene(MainScene);
     }
+
+    public void QuitGame()
+    {
+        SaveSystem.SavePlayer(this);
+        Application.Quit();
+    }
+
+    public void ResetOre()
+    {
+        PlayerOre = 0;
+        SaveSystem.SavePlayer(this);
+    }
+    
     public void OnPlayerDestroyed()
     {
         Invoke("OnGameOver", GameOverDelay);
@@ -38,6 +59,7 @@ public class GameStateController : MonoBehaviour
 
     private void OnGameOver()
     {
+        SaveSystem.SavePlayer(this);
         SceneManager.LoadScene(GameOverScene);
     }
 }

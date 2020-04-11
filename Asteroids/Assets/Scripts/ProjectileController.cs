@@ -16,6 +16,9 @@ public class ProjectileController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
+        if (collision.gameObject.tag != "Projectile")
+        {
+            Destroy(gameObject);
+        }
     }
 }

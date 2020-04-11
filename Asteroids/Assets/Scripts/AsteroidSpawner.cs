@@ -10,7 +10,7 @@ public class AsteroidSpawner : MonoBehaviour {
     };
     public static AsteroidSpawner Instance { get; private set; }
 
-    public uint AsteroidsCount = 5;
+    private uint AsteroidsCount = GameStateController.Instance.Level;
     public GameObject AsteroidPrefab;
     public float PlayableGridCellSize = 2.2f;
     public int PlayerSafeCells = 1;
@@ -46,6 +46,7 @@ public class AsteroidSpawner : MonoBehaviour {
     {
         if (PlayerShip != null && !IsSpawningFinished)
         {
+            Debug.Log(AsteroidsCount);
             CreatePlayableGrid();
             MarkPlayerSafeArea();
             SpawnNewAsteroids();

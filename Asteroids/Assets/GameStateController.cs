@@ -8,6 +8,7 @@ public class GameStateController : MonoBehaviour
     public string GameOverScene = "GameOver";
     public string MainScene = "MainScene";
     public float GameOverDelay = 3;
+    public uint Level = 1;
     public uint PlayerOre { get; private set;} = 0;
     public static GameStateController Instance { get; private set; }
     
@@ -21,6 +22,7 @@ public class GameStateController : MonoBehaviour
             if (SaveSystem.LoadPlayer() != null)
             {
                 PlayerOre = SaveSystem.LoadPlayer().playerOre;
+                Level = SaveSystem.LoadPlayer().level;
             }
         }
         else
@@ -55,6 +57,13 @@ public class GameStateController : MonoBehaviour
     public void OnPlayerDestroyed()
     {
         Invoke("OnGameOver", GameOverDelay);
+    }
+
+    public void OnPassLevel()
+    {
+        Level++;
+        SaveSystem.SavePlayer(this);
+        SceneManager.LoadScene(GameOverScene);
     }
 
     private void OnGameOver()

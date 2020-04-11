@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OreLabelController : MonoBehaviour
+public class LevelLabelController : MonoBehaviour
 {
     Text txt;
 
     void Start()
     {
         txt = GetComponent<Text>();
-        txt.text += GameStateController.Instance.PlayerOre;
+        txt.text += GameStateController.Instance.Level;
     }
 
     void Update()
     {
-        txt.text = "Ore: " + GameStateController.Instance.PlayerOre;
+        txt.text = "Next level: " + GameStateController.Instance.Level;
     }
 }

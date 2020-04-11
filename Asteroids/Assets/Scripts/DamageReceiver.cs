@@ -18,7 +18,7 @@ public class DamageReceiver : MonoBehaviour
         {
             Vector3 hitDirection = transform.position - damageDealer.transform.position;
             hitDirection.Normalize();
-
+            LevelController.Instance.IncreaseAsteroidCount(2);
             if (DebugDraw)
             {
                 Debug.DrawLine(damageDealer.transform.position, transform.position, Color.red, 2.0f);
@@ -31,7 +31,13 @@ public class DamageReceiver : MonoBehaviour
         Destroy(fx, DestructionFXTimeToLive);
         Destroy(gameObject);
         GameStateController.Instance.IncrementPlayerOre(oreOnDeath);
+        
+        if (gameObject.tag == "Asteroid")
+        {
+            LevelController.Instance.DecreaseAsteroidCount();
+        }
     }
+    
     private void SpawnDeathObject(Vector3 hitDirection, float angle)
     {
         Vector3 spawnDirection = Quaternion.AngleAxis(angle, Vector3.up) * hitDirection;

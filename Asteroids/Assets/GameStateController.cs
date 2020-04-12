@@ -10,7 +10,8 @@ public class GameStateController : MonoBehaviour
     public string ShopScene = "ShopScene";
     public float GameOverDelay = 3;
     public uint Level = 1;
-    public uint PlayerOre { get; private set;} = 0;
+    public bool[] shieldUpgrades = new bool[3];
+    public uint PlayerOre = 0;
     public static GameStateController Instance { get; private set; }
     
     void Awake()
@@ -24,6 +25,7 @@ public class GameStateController : MonoBehaviour
             {
                 PlayerOre = SaveSystem.LoadPlayer().playerOre;
                 Level = SaveSystem.LoadPlayer().level;
+                shieldUpgrades = SaveSystem.LoadPlayer().shieldUpgrades;
             }
         }
         else
@@ -83,6 +85,13 @@ public class GameStateController : MonoBehaviour
     {
         SaveSystem.SavePlayer(this);
         SceneManager.LoadScene(GameOverScene);
+    }
+
+    public void PurchaseShieldMk1()
+    {
+        shieldUpgrades[0] = true;
+        PlayerOre -= 500;
+        SaveSystem.SavePlayer(this);
     }
 
     private void OnGameOver()

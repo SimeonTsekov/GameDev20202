@@ -9,4 +9,12 @@ public class ShopController : MonoBehaviour
     {
         GameStateController.Instance.LoadMenu();
     }
+    
+    public void OnPurchaseShieldMk1()
+    {
+        if (GameStateController.Instance.PlayerOre >= 500 && !GameStateController.Instance.shieldUpgrades[0])
+        {
+            GameStateController.Instance.PurchaseShieldMk1();
+        }
+    }
 }

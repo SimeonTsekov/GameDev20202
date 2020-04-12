@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5264719188679951118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 3.22}
+  m_LocalPosition: {x: 0, y: -0, z: 4.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5264719188865537632}
@@ -44,9 +44,9 @@ GameObject:
   - component: {fileID: 5264719187840928315}
   - component: {fileID: 5264719188865632839}
   - component: {fileID: 5264719187840928314}
-  - component: {fileID: 5264719187840928295}
   - component: {fileID: 5264719187840928292}
   - component: {fileID: 5264719187840928313}
+  - component: {fileID: -3691507958144693848}
   m_Layer: 0
   m_Name: TUES_PlayerShip
   m_TagString: Player
@@ -91,6 +91,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -153,29 +154,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 2.1063573
+  m_Radius: 1.5
   m_Height: 0.6453304
   m_Direction: 1
   m_Center: {x: 0, y: 0.09215798, z: -0.2192015}
---- !u!114 &5264719187840928295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5264719188865632832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77ad8d3517c02d043a49a7716bb4c2b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DestructionFx: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 3}
-  DestructionFXTimeToLive: 4
-  ObjectToSpawnOnDeath: {fileID: 0}
-  SpawnDistance: 2
-  DeflectionAngle: 45
-  DebugDraw: 0
-  ScoreOnDeath: 0
 --- !u!114 &5264719187840928292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +171,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerSpeed: 12
-  MouseDistanceThreshold: 0.15
+  DistanceTreshold: 0.15
+  shieldMk1: {fileID: 1315360689518889875, guid: 193fda4dcee4a6e43815944e159e0863,
+    type: 3}
+  shieldHealth: 0
+  shieldExisting: 0
+  DestructionFx: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 3}
+  DestructionFXTimeToLive: 4
 --- !u!114 &5264719187840928313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,3 +193,16 @@ MonoBehaviour:
   Projectile: {fileID: 100000, guid: 11e27c26ac87b40f0a62ec40d7261989, type: 3}
   WeaponPosition: {fileID: 5264719188679951117}
   ShotsPerSecond: 3.5
+--- !u!114 &-3691507958144693848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5264719188865632832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2cfeb162fa247f41bed5d53ef9b2947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TagToHit: Asteroid

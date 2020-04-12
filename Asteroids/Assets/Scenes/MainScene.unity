@@ -760,6 +760,22 @@ PrefabInstance:
       propertyPath: PlayerSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5264719187840928292, guid: d365628c35f2ec54ba9993c75e8fb651,
+        type: 3}
+      propertyPath: shieldMk1
+      value: 
+      objectReference: {fileID: 1315360689518889875, guid: 193fda4dcee4a6e43815944e159e0863,
+        type: 3}
+    - target: {fileID: 5264719188679951117, guid: d365628c35f2ec54ba9993c75e8fb651,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 5264719188679951117, guid: d365628c35f2ec54ba9993c75e8fb651,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 5264719188865537632, guid: d365628c35f2ec54ba9993c75e8fb651,
         type: 3}
       propertyPath: m_LocalPosition.x

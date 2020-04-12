@@ -10,7 +10,6 @@ public class Weapon : MonoBehaviour
 
     private float LastShotTime = 0;
  
-    // Update is called once per frame
     public void Shoot()
     {
         float shotCooldown = 1 / ShotsPerSecond;

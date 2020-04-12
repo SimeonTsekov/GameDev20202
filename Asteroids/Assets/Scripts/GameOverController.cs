@@ -19,4 +19,9 @@ public class GameOverController : MonoBehaviour
     {
         GameStateController.Instance.ResetOre();
     }
+    
+    public void OnResetLevel()
+    {
+        GameStateController.Instance.ResetLevel();
+    }
 }

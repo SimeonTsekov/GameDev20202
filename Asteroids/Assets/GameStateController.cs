@@ -53,7 +53,13 @@ public class GameStateController : MonoBehaviour
         PlayerOre = 0;
         SaveSystem.SavePlayer(this);
     }
-    
+
+    public void ResetLevel()
+    {
+        Level = 1;
+        SaveSystem.SavePlayer(this);
+    }
+
     public void OnPlayerDestroyed()
     {
         Invoke("OnGameOver", GameOverDelay);

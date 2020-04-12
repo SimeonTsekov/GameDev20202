@@ -13,6 +13,7 @@ public class LevelController : MonoBehaviour
         {
             Instance = this;
             asteroidCount = GameStateController.Instance.Level;
+            Debug.Log(asteroidCount);
         }
         else
         {
@@ -24,6 +25,7 @@ public class LevelController : MonoBehaviour
     {
         if (asteroidCount == 0)
         {
+            Debug.Log("End");
             EndLevel();
         }
     }

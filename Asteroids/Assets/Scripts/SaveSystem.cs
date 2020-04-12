@@ -35,4 +35,14 @@ public static class SaveSystem
             return null;
         }
     }
+
+    public static void RazeData()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "player.bin");
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+            Application.Quit();
+        }
+    }
 }

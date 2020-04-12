@@ -29,4 +29,9 @@ public class GameOverController : MonoBehaviour
     {
         GameStateController.Instance.LoadShop();
     }
+
+    public void OnRazeGame()
+    {
+        GameStateController.Instance.OnRazeGame();
+    }
 }

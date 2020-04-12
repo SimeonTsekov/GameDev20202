@@ -70,6 +70,7 @@ public class GameStateController : MonoBehaviour
 
     public void OnPassLevel()
     {
+        PlayerOre += 50 * Level;
         Level++;
         SaveSystem.SavePlayer(this);
         SceneManager.LoadScene(GameOverScene);
@@ -92,6 +93,11 @@ public class GameStateController : MonoBehaviour
         shieldUpgrades[0] = true;
         PlayerOre -= 500;
         SaveSystem.SavePlayer(this);
+    }
+
+    public void OnRazeGame()
+    {
+        SaveSystem.RazeData();
     }
 
     private void OnGameOver()

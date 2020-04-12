@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     public GameObject shieldMk1;
     public int shieldHealth = 0;
     public bool shieldExisting;
+    public GameObject blastwaveMk1;
+    public uint blastwaveCooldown = 0;
+    public AudioClip blastwave;
     public GameObject DestructionFx;
     public float DestructionFXTimeToLive = 4;
 
@@ -23,6 +26,8 @@ public class PlayerController : MonoBehaviour
             shieldHealth = 1;
             shieldExisting = true;
         }
+
+        InvokeRepeating("DecreaseBlastwaveCooldown", 1.0f, 1.0f);
     }
 
     void Update()
@@ -36,6 +41,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("Fire1"))
         {
             weapon.Shoot();
+        }
+
+        if (Input.GetButton("Fire2") && blastwaveCooldown == 0 && GameStateController.Instance.blastwaveUpgrades[0])
+        {
+            AudioSource.PlayClipAtPoint(blastwave, transform.position);
+            blastwaveMk1 = Instantiate(blastwaveMk1, transform.position, transform.rotation);
+            blastwaveCooldown = 10;
         }
 
         float verticalAxis = Input.GetAxis("Vertical");
@@ -86,5 +98,13 @@ public class PlayerController : MonoBehaviour
         Destroy(gameObject);
         AsteroidSpawner.Instance.UnregisterPlayer(gameObject);
         GameStateController.Instance.OnPlayerDestroyed();
+    }
+
+    void DecreaseBlastwaveCooldown()
+    {
+        if (blastwaveCooldown > 0)
+        {
+            blastwaveCooldown--;
+        }
     }
 }

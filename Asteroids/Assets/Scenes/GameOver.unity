@@ -960,6 +960,7 @@ MonoBehaviour:
   GameOverDelay: 3
   Level: 1
   shieldUpgrades: 000000
+  blastwaveUpgrades: 000000
   PlayerOre: 0
 --- !u!4 &708933540
 Transform:
@@ -2086,7 +2087,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Reset ore to 0
+  m_Text: Reset ore to 1500
 --- !u!222 &2069123098
 CanvasRenderer:
   m_ObjectHideFlags: 0

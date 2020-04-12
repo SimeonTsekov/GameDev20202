@@ -17,4 +17,12 @@ public class ShopController : MonoBehaviour
             GameStateController.Instance.PurchaseShieldMk1();
         }
     }
+
+    public void OnPurchaseBlastwaveMk1()
+    {
+        if (GameStateController.Instance.PlayerOre >= 1000 && !GameStateController.Instance.blastwaveUpgrades[0])
+        {
+            GameStateController.Instance.PurchaseBlastwaveMk1();
+        }
+    }
 }

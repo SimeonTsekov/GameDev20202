@@ -54,4 +54,32 @@ public class DamageReceiver : MonoBehaviour
             asteroidMovementController.InitialDirection = spawnDirection;
         }
     }
+
+    void OnParticleCollision(GameObject damageDealer)
+    {
+        Debug.Log("Collided");
+
+        if (ObjectToSpawnOnDeath != null)
+        {
+            Vector3 hitDirection = transform.position - damageDealer.transform.position;
+            hitDirection.Normalize();
+            LevelController.Instance.IncreaseAsteroidCount(2);
+            if (DebugDraw)
+            {
+                Debug.DrawLine(damageDealer.transform.position, transform.position, Color.red, 2.0f);
+            }
+            SpawnDeathObject(hitDirection, -DeflectionAngle);
+            SpawnDeathObject(hitDirection, DeflectionAngle);
+        }
+
+        GameObject fx = Instantiate(DestructionFx, transform.position, transform.rotation);
+        Destroy(fx, DestructionFXTimeToLive);
+        Destroy(gameObject);
+        GameStateController.Instance.IncrementPlayerOre(oreOnDeath);
+
+        if (gameObject.tag == "Asteroid")
+        {
+            LevelController.Instance.DecreaseAsteroidCount();
+        }
+    }
 }

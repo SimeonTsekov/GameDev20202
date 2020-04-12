@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
-
     public float ProjectileVelocity = 2.5f;
     public float TimeToLive = 5;
+    GameObject[] objs;
+
     void Start()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
@@ -14,9 +15,18 @@ public class ProjectileController : MonoBehaviour
         Destroy(gameObject, TimeToLive);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void Update()
     {
-        if (collision.gameObject.tag != "Projectile")
+        objs = GameObject.FindGameObjectsWithTag("Projectile");
+        foreach (GameObject projectile in objs)
+        {
+            Physics.IgnoreCollision(this.GetComponent<Collider>(), projectile.GetComponent<Collider>());
+        }
+    }
+
+    void OnCollisionEnter(Collision coll)
+    {
+        if (coll.gameObject.tag == "Asteroid")
         {
             Destroy(gameObject);
         }

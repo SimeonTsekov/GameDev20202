@@ -24,4 +24,9 @@ public class GameOverController : MonoBehaviour
     {
         GameStateController.Instance.ResetLevel();
     }
+
+    public void OnShop()
+    {
+        GameStateController.Instance.LoadShop();
+    }
 }

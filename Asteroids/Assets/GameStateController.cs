@@ -7,6 +7,7 @@ public class GameStateController : MonoBehaviour
 {
     public string GameOverScene = "GameOver";
     public string MainScene = "MainScene";
+    public string ShopScene = "ShopScene";
     public float GameOverDelay = 3;
     public uint Level = 1;
     public uint PlayerOre { get; private set;} = 0;
@@ -68,6 +69,18 @@ public class GameStateController : MonoBehaviour
     public void OnPassLevel()
     {
         Level++;
+        SaveSystem.SavePlayer(this);
+        SceneManager.LoadScene(GameOverScene);
+    }
+
+    public void LoadShop()
+    {
+        SaveSystem.SavePlayer(this);
+        SceneManager.LoadScene(ShopScene);
+    }
+
+    public void LoadMenu()
+    {
         SaveSystem.SavePlayer(this);
         SceneManager.LoadScene(GameOverScene);
     }

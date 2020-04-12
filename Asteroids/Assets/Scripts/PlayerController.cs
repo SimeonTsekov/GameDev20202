@@ -47,9 +47,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    void OnCollisionEnter(Collision coll)
     {
-        AsteroidSpawner.Instance.UnregisterPlayer(gameObject);
-        //GameStateController.Instance.OnPlayerDestroyed();
+        if (coll.gameObject.tag == "Asteroid")
+        {
+            Debug.Log("Destroyed");
+            AsteroidSpawner.Instance.UnregisterPlayer(gameObject);
+            GameStateController.Instance.OnPlayerDestroyed();
+        }
     }
 }

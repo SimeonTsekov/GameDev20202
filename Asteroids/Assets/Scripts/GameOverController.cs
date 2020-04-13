@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameOverController : MonoBehaviour
 {
-    public bool opened;
-
     public void OnRestart()
     {
         GameStateController.Instance.RestartGame();
@@ -39,15 +37,6 @@ public class GameOverController : MonoBehaviour
 
     public void OnSettings()
     {
-        if (!opened)
-        {
-            opened = true;
-            GameStateController.Instance.OnSettings();
-        }
-        else
-        {
-            opened = false;
-            GameStateController.Instance.OnDestroySettings();
-        }
+        SettingsController.Instance.OnSettings();
     }
 }

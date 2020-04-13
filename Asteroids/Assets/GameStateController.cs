@@ -14,8 +14,6 @@ public class GameStateController : MonoBehaviour
     public bool[] blastwaveUpgrades = new bool[3];
     public bool[] multishotUpgrades = new bool[3];
     public uint PlayerOre = 0;
-    public GameObject settings;
-    public Transform parent;
     public static GameStateController Instance { get; private set; }
     
     void Awake()
@@ -24,8 +22,6 @@ public class GameStateController : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            settings = Instantiate(settings, parent);
-            settings.SetActive(false);
 
             if (SaveSystem.LoadPlayer() != null)
             {
@@ -41,7 +37,15 @@ public class GameStateController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SettingsController.Instance.OnSettings();
+        }
+    }
+
     public void IncrementPlayerOre(uint oreToAdd)
     {
         PlayerOre += oreToAdd;
@@ -122,14 +126,14 @@ public class GameStateController : MonoBehaviour
         SaveSystem.RazeData();
     }
 
-    public void OnSettings()
+    public void Mute()
     {
-        settings.SetActive(true);
+        AudioListener.volume = 0f;
     }
 
-    public void OnDestroySettings()
+    public void Unmute()
     {
-        settings.SetActive(false);
+        AudioListener.volume = 1f;
     }
 
     private void OnGameOver()

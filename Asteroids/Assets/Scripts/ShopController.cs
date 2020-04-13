@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ShopController : MonoBehaviour
 {
+    public GameObject rapid;
+
     public void OnLoadMenu()
     {
         GameStateController.Instance.LoadMenu();
@@ -31,6 +33,7 @@ public class ShopController : MonoBehaviour
         if (GameStateController.Instance.PlayerOre >= 1000 && !GameStateController.Instance.multishotUpgrades[0])
         {
             GameStateController.Instance.PurchaseMultishotMk1();
+            Destroy(rapid);
         }
     }
 }

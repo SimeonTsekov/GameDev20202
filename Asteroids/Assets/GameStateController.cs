@@ -57,7 +57,7 @@ public class GameStateController : MonoBehaviour
 
     public void ResetOre()
     {
-        PlayerOre = 1500;
+        PlayerOre = 3500;
         SaveSystem.SavePlayer(this);
     }
 
@@ -109,7 +109,7 @@ public class GameStateController : MonoBehaviour
     public void PurchaseMultishotMk1()
     {
         multishotUpgrades[0] = true;
-        PlayerOre -= 1000;
+        PlayerOre -= 2000;
         SaveSystem.SavePlayer(this);
     }
 

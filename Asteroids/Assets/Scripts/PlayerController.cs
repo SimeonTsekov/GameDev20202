@@ -40,7 +40,17 @@ public class PlayerController : MonoBehaviour
         Weapon weapon = GetComponent<Weapon>();
         if (Input.GetButton("Fire1"))
         {
-            weapon.Shoot();
+            if (GameStateController.Instance.multishotUpgrades[0])
+            {
+                for(int i=0; i<3; i++)
+                {
+                    weapon.Shoot(0.33f);
+                }
+            }
+            else
+            {
+                weapon.Shoot(1.0f);
+            }
         }
 
         if (Input.GetButton("Fire2") && blastwaveCooldown == 0 && GameStateController.Instance.blastwaveUpgrades[0])

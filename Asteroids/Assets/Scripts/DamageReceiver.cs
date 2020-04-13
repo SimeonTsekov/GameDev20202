@@ -14,6 +14,7 @@ public class DamageReceiver : MonoBehaviour
 
     public void ReceiveHit(GameObject damageDealer)
     {
+
         if (ObjectToSpawnOnDeath != null)
         {
             Vector3 hitDirection = transform.position - damageDealer.transform.position;
@@ -31,7 +32,7 @@ public class DamageReceiver : MonoBehaviour
         Destroy(fx, DestructionFXTimeToLive);
         Destroy(gameObject);
         GameStateController.Instance.IncrementPlayerOre(oreOnDeath);
-        
+
         if (gameObject.tag == "Asteroid")
         {
             LevelController.Instance.DecreaseAsteroidCount();

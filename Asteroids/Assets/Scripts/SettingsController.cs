@@ -5,7 +5,7 @@ using UnityEngine;
 public class SettingsController : MonoBehaviour
 {
     public bool masterVolumeState;
-    private bool opened;
+    public bool opened;
     public static SettingsController Instance { get; private set; }
 
     void Awake()

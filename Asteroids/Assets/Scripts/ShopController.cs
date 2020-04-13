@@ -10,6 +10,10 @@ public class ShopController : MonoBehaviour
     public void OnLoadMenu()
     {
         GameStateController.Instance.LoadMenu();
+        if (SettingsController.Instance.opened)
+        {
+            SettingsController.Instance.OnSettings();
+        }
     }
     
     public void OnPurchaseShieldMk1()
@@ -35,5 +39,10 @@ public class ShopController : MonoBehaviour
             GameStateController.Instance.PurchaseMultishotMk1();
             Destroy(rapid);
         }
+    }
+
+    public void OnSettings()
+    {
+        SettingsController.Instance.OnSettings();
     }
 }

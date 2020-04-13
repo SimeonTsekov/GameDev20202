@@ -6,18 +6,58 @@ public class PlayerController : MonoBehaviour
 {
     public float PlayerSpeed = 0.1f;
     public float DistanceTreshold = 0.15f;
+    public GameObject shieldMk1;
+    public int shieldHealth = 0;
+    public bool shieldExisting;
+    public GameObject blastwaveMk1;
+    public uint blastwaveCooldown = 0;
+    public AudioClip blastwave;
+    public GameObject DestructionFx;
+    public float DestructionFXTimeToLive = 4;
 
     private void Start()
     {
         AsteroidSpawner.Instance.RegisterPlayer(gameObject);
+
+        if (GameStateController.Instance.shieldUpgrades[0])
+        {
+            shieldMk1 = Instantiate(shieldMk1, transform.position, transform.rotation);
+            shieldMk1.transform.parent = transform;
+            shieldHealth = 1;
+            shieldExisting = true;
+        }
+
+        InvokeRepeating("DecreaseBlastwaveCooldown", 1.0f, 1.0f);
     }
 
     void Update()
     {
+        if (shieldHealth == 0 && shieldExisting)
+        {
+            Destroy(shieldMk1);
+        }
+
         Weapon weapon = GetComponent<Weapon>();
         if (Input.GetButton("Fire1"))
         {
-            weapon.Shoot();
+            if (GameStateController.Instance.multishotUpgrades[0])
+            {
+                for(int i=0; i<3; i++)
+                {
+                    weapon.Shoot(0.33f);
+                }
+            }
+            else
+            {
+                weapon.Shoot(1.0f);
+            }
+        }
+
+        if (Input.GetButton("Fire2") && blastwaveCooldown == 0 && GameStateController.Instance.blastwaveUpgrades[0])
+        {
+            AudioSource.PlayClipAtPoint(blastwave, transform.position);
+            blastwaveMk1 = Instantiate(blastwaveMk1, transform.position, transform.rotation);
+            blastwaveCooldown = 10;
         }
 
         float verticalAxis = Input.GetAxis("Vertical");
@@ -51,9 +91,30 @@ public class PlayerController : MonoBehaviour
     {
         if (coll.gameObject.tag == "Asteroid")
         {
-            Debug.Log("Destroyed");
-            AsteroidSpawner.Instance.UnregisterPlayer(gameObject);
-            GameStateController.Instance.OnPlayerDestroyed();
+            if (shieldHealth == 0)
+            {
+                DestroyPlayer();
+            }
+
+            shieldHealth--;
+        }     
+    }
+
+    void DestroyPlayer()
+    {
+        GameObject fx = Instantiate(DestructionFx, transform.position, transform.rotation);
+        Destroy(fx, DestructionFXTimeToLive);
+        Debug.Log("Destroyed");
+        Destroy(gameObject);
+        AsteroidSpawner.Instance.UnregisterPlayer(gameObject);
+        GameStateController.Instance.OnPlayerDestroyed();
+    }
+
+    void DecreaseBlastwaveCooldown()
+    {
+        if (blastwaveCooldown > 0)
+        {
+            blastwaveCooldown--;
         }
     }
 }

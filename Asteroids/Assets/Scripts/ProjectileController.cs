@@ -22,6 +22,10 @@ public class ProjectileController : MonoBehaviour
         {
             Physics.IgnoreCollision(this.GetComponent<Collider>(), projectile.GetComponent<Collider>());
         }
+        if (GameObject.FindWithTag("Shield") != null)
+        {
+            Physics.IgnoreCollision(this.GetComponent<Collider>(), GameObject.FindWithTag("Shield").GetComponent<Collider>());
+        }
     }
 
     void OnCollisionEnter(Collision coll)

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8529685299540114080}
   - component: {fileID: 7262668223053817697}
   - component: {fileID: 702698649913390756}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: prop_asteroid_01
   m_TagString: Asteroid
   m_Icon: {fileID: 0}
@@ -77,6 +77,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -144,11 +145,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestructionFx: {fileID: 100004, guid: 2857e183f4cd3df4e9096e5b578bd32f, type: 3}
+  DestructionFXTimeToLive: 4
   ObjectToSpawnOnDeath: {fileID: 6598635895317836826, guid: 4b5217cfdc2c579448825f40af6a997c,
     type: 3}
   SpawnDistance: 1
   DeflectionAngle: 45
   DebugDraw: 0
+  oreOnDeath: 5
 --- !u!114 &7262668223053817697
 MonoBehaviour:
   m_ObjectHideFlags: 0

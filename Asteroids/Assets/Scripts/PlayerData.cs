@@ -9,6 +9,7 @@ public class PlayerData
     public uint level;
     public bool[] shieldUpgrades;
     public bool[] blastwaveUpgrades;
+    public bool[] multishotUpgrades;
 
     public PlayerData(GameStateController controller)
     {
@@ -16,5 +17,6 @@ public class PlayerData
         level = controller.Level;
         shieldUpgrades = controller.shieldUpgrades;
         blastwaveUpgrades = controller.blastwaveUpgrades;
+        multishotUpgrades = controller.multishotUpgrades;
     }
 }

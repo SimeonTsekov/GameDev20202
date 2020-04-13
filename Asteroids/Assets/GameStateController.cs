@@ -12,6 +12,7 @@ public class GameStateController : MonoBehaviour
     public uint Level = 1;
     public bool[] shieldUpgrades = new bool[3];
     public bool[] blastwaveUpgrades = new bool[3];
+    public bool[] multishotUpgrades = new bool[3];
     public uint PlayerOre = 0;
     public static GameStateController Instance { get; private set; }
     
@@ -28,6 +29,7 @@ public class GameStateController : MonoBehaviour
                 Level = SaveSystem.LoadPlayer().level;
                 shieldUpgrades = SaveSystem.LoadPlayer().shieldUpgrades;
                 blastwaveUpgrades = SaveSystem.LoadPlayer().blastwaveUpgrades;
+                multishotUpgrades = SaveSystem.LoadPlayer().multishotUpgrades;
             }
         }
         else
@@ -100,6 +102,13 @@ public class GameStateController : MonoBehaviour
     public void PurchaseBlastwaveMk1()
     {
         blastwaveUpgrades[0] = true;
+        PlayerOre -= 1000;
+        SaveSystem.SavePlayer(this);
+    }
+
+    public void PurchaseMultishotMk1()
+    {
+        multishotUpgrades[0] = true;
         PlayerOre -= 1000;
         SaveSystem.SavePlayer(this);
     }

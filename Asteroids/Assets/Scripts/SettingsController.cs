@@ -120,6 +120,11 @@ public class SettingsController : MonoBehaviour
         GameStateController.Instance.QuitGame();
     }
 
+    public void OnBack()
+    {
+        Resume();
+    }
+
     void Pause()
     {
         opened = true;

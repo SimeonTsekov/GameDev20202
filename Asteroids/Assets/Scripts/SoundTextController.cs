@@ -16,11 +16,11 @@ public class SoundTextController : MonoBehaviour
     {
         if (SettingsController.Instance.soundOn)
         {
-            txt.text = "Sound On";
+            txt.text = "Master Sound On";
         }
         else
         {
-            txt.text = "Sound Off";
+            txt.text = "Master Sound Off";
         }
     }
 }

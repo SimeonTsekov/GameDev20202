@@ -69,11 +69,17 @@ public static class SaveSystem
 
     public static void RazeData()
     {
-        string path = Path.Combine(Application.persistentDataPath, "player.bin");
-        if (File.Exists(path))
+        string playerPath = Path.Combine(Application.persistentDataPath, "player.bin");
+        string settingsPath = Path.Combine(Application.persistentDataPath, "settings.bin");
+        if (File.Exists(playerPath))
         {
-            File.Delete(path);
-            Application.Quit();
+            File.Delete(playerPath);           
         }
+        if (File.Exists(settingsPath))
+        {
+            File.Delete(settingsPath);
+        }
+
+        Application.Quit();
     }
 }

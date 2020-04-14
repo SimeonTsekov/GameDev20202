@@ -34,4 +34,9 @@ public class GameOverController : MonoBehaviour
     {
         GameStateController.Instance.OnRazeGame();
     }
+
+    public void OnSettings()
+    {
+        SettingsController.Instance.OnSettings();
+    }
 }

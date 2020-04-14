@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - Shield
   - Blastwave
+  - Tester
   layers:
   - Default
   - TransparentFX

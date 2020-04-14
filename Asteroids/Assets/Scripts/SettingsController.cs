@@ -18,6 +18,7 @@ public class SettingsController : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             gameObject.SetActive(false);
+
             objs = GameObject.FindGameObjectsWithTag("Tester");
 
             if (SaveSystem.LoadSettings() != null)
@@ -111,6 +112,12 @@ public class SettingsController : MonoBehaviour
         {
             tester.SetActive(true);
         }
+    }
+
+    public void OnQuit()
+    {
+        SaveSystem.SaveSettings(this);
+        GameStateController.Instance.QuitGame();
     }
 
     void Pause()

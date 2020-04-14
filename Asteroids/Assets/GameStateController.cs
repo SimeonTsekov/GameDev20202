@@ -54,6 +54,12 @@ public class GameStateController : MonoBehaviour
     public void RestartGame()
     {
         SaveSystem.SavePlayer(this);
+
+        if (SettingsController.Instance.musicOn)
+        {
+            SoundController.Instance.OnPlayMusic();
+        }
+        
         SceneManager.LoadScene(MainScene);
     }
 
@@ -84,6 +90,7 @@ public class GameStateController : MonoBehaviour
     {
         PlayerOre += 50 * Level;
         Level++;
+        SoundController.Instance.OnStopMusic();
         SaveSystem.SavePlayer(this);
         SceneManager.LoadScene(GameOverScene);
     }
@@ -126,19 +133,10 @@ public class GameStateController : MonoBehaviour
         SaveSystem.RazeData();
     }
 
-    public void Mute()
-    {
-        AudioListener.volume = 0f;
-    }
-
-    public void Unmute()
-    {
-        AudioListener.volume = 1f;
-    }
-
     private void OnGameOver()
     {
         SaveSystem.SavePlayer(this);
+        SoundController.Instance.OnStopMusic();
         SceneManager.LoadScene(GameOverScene);
     }
 }

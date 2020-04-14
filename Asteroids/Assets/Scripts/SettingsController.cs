@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SettingsController : MonoBehaviour
 {
-    public bool masterVolumeState;
+    public bool musicOn = true;
     public bool opened;
     public static SettingsController Instance { get; private set; }
 
@@ -33,6 +33,20 @@ public class SettingsController : MonoBehaviour
         {
             opened = false;
             gameObject.SetActive(false);
+        }
+    }
+
+    public void OnMusic()
+    {
+        if (!musicOn)
+        {
+            SoundController.Instance.OnMusicUnmute();
+            musicOn = true;
+        }
+        else
+        {
+            SoundController.Instance.OnMusicMute();
+            musicOn = false;
         }
     }
 }

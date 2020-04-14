@@ -40,4 +40,13 @@ public class SoundController : MonoBehaviour
     {
         music.volume = 1.0f;
     }
+
+    public void OnSoundMute()
+    {
+        AudioListener.volume = 0.0f;
+    }
+    public void OnSoundUnmute()
+    {
+        AudioListener.volume = 1.0f;
+    }
 }

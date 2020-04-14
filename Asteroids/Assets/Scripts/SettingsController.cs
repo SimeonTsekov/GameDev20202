@@ -5,6 +5,7 @@ using UnityEngine;
 public class SettingsController : MonoBehaviour
 {
     public bool musicOn = true;
+    public bool soundOn = true;
     public bool opened;
     public static SettingsController Instance { get; private set; }
 
@@ -19,6 +20,12 @@ public class SettingsController : MonoBehaviour
             if (SaveSystem.LoadSettings() != null)
             {
                 musicOn = SaveSystem.LoadSettings().musicOn;
+                soundOn = SaveSystem.LoadSettings().soundOn;
+            }
+
+            if (!soundOn)
+            {
+                SoundController.Instance.OnSoundMute();
             }
         }
         else
@@ -45,13 +52,25 @@ public class SettingsController : MonoBehaviour
         {
             SoundController.Instance.OnMusicUnmute();
             musicOn = true;
-            SaveSystem.SaveSettings(this);
         }
         else
         {
             SoundController.Instance.OnMusicMute();
             musicOn = false;
-            SaveSystem.SaveSettings(this);
+        }
+    }
+
+    public void OnSound()
+    {
+        if (!soundOn)
+        {
+            SoundController.Instance.OnSoundUnmute();
+            soundOn = true;
+        }
+        else
+        {
+            SoundController.Instance.OnSoundMute();
+            soundOn = false;
         }
     }
 
@@ -67,5 +86,6 @@ public class SettingsController : MonoBehaviour
         opened = false;
         Time.timeScale = 1.0f;
         gameObject.SetActive(false);
+        SaveSystem.SaveSettings(this);
     }
 }

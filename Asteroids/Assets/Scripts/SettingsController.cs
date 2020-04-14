@@ -6,6 +6,8 @@ public class SettingsController : MonoBehaviour
 {
     public bool musicOn = true;
     public bool soundOn = true;
+    public bool testerOn;
+    private GameObject[] objs;
     public bool opened;
     public static SettingsController Instance { get; private set; }
 
@@ -16,16 +18,23 @@ public class SettingsController : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             gameObject.SetActive(false);
+            objs = GameObject.FindGameObjectsWithTag("Tester");
 
             if (SaveSystem.LoadSettings() != null)
             {
                 musicOn = SaveSystem.LoadSettings().musicOn;
                 soundOn = SaveSystem.LoadSettings().soundOn;
+                testerOn = SaveSystem.LoadSettings().testerOn;
             }
 
             if (!soundOn)
             {
                 SoundController.Instance.OnSoundMute();
+            }
+
+            if (!testerOn)
+            {
+                OnTesterDeact();
             }
         }
         else
@@ -71,6 +80,36 @@ public class SettingsController : MonoBehaviour
         {
             SoundController.Instance.OnSoundMute();
             soundOn = false;
+        }
+    }
+
+    public void OnTester()
+    {
+        if (!testerOn)
+        {
+            OnTesterAct();
+            testerOn = true;
+        }
+        else
+        {
+            OnTesterDeact();
+            testerOn = false;
+        }
+    }
+
+    void OnTesterDeact()
+    {
+        foreach (GameObject tester in objs)
+        {
+            tester.SetActive(false);
+        }
+    }
+
+    void OnTesterAct()
+    {
+        foreach (GameObject tester in objs)
+        {
+            tester.SetActive(true);
         }
     }
 

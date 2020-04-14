@@ -54,10 +54,11 @@ public class GameStateController : MonoBehaviour
     public void RestartGame()
     {
         SaveSystem.SavePlayer(this);
+        SoundController.Instance.OnPlayMusic();
 
-        if (SettingsController.Instance.musicOn)
+        if (!SettingsController.Instance.musicOn)
         {
-            SoundController.Instance.OnPlayMusic();
+            SoundController.Instance.OnMusicMute();
         }
         
         SceneManager.LoadScene(MainScene);

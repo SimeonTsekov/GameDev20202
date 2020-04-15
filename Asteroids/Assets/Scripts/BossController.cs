@@ -8,6 +8,10 @@ public class BossController : MonoBehaviour
     public GameObject DestructionFx;
     public float DestructionFXTimeToLive = 4;
     private GameObject player;
+    private float dist;
+    public float speed = 5.0f;
+    private float lastRotatetdTime = 0.0f;
+    private float random = 0.0f;
 
     void Start()
     {
@@ -17,7 +21,21 @@ public class BossController : MonoBehaviour
 
     void Update()
     {
-        if(health == 0)
+        float step = speed * Time.deltaTime;
+        dist = Vector3.Distance(player.transform.position, transform.position);
+        
+        if (Time.time > lastRotatetdTime + 2)
+        {
+            lastRotatetdTime = Time.time;
+            random = Random.Range(-1, 1);
+        }
+
+        if (dist > 5)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
+        }
+
+        if (health == 0)
         {
             GameObject fx = Instantiate(DestructionFx, transform.position, transform.rotation);
             Destroy(fx, DestructionFXTimeToLive);
@@ -31,16 +49,32 @@ public class BossController : MonoBehaviour
             transform.LookAt(player.transform);
         }
 
-        weapon.Shoot(2.0f);
+        if (GameStateController.Instance.Level / 2 > 5)
+        {
+            weapon.Shoot(5);
+        }
+        else
+        {
+            weapon.Shoot(GameStateController.Instance.Level / 2);
+        }
+
+        float horizontalAxis = random;
+
+        Vector3 displacement = new Vector3(horizontalAxis, 0, 0) * Time.deltaTime * speed;
+        displacement = transform.rotation * displacement;
+
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.MovePosition(transform.position + displacement);
+    }
+        
+    void OnCollisionEnter(Collision coll)       
+    {           
+        health--;        
+    }
+        
+    void OnParticleCollision(GameObject damageDealer)       
+    {            
+        health--;        
     }
     
-    void OnCollisionEnter(Collision coll)
-    {
-        health--;
-    }
-
-    void OnParticleCollision(GameObject damageDealer)
-    {
-        health--;
-    }
 }

@@ -42,10 +42,7 @@ public class PlayerController : MonoBehaviour
         {
             if (GameStateController.Instance.multishotUpgrades[0])
             {
-                for(int i=0; i<3; i++)
-                {
-                    weapon.Shoot(0.33f);
-                }
+                weapon.Shoot(0.33f);
             }
             else
             {

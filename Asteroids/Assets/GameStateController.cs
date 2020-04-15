@@ -78,7 +78,7 @@ public class GameStateController : MonoBehaviour
 
     public void ResetLevel()
     {
-        Level = 1;
+        Level = 5;
         SaveSystem.SavePlayer(this);
     }
 

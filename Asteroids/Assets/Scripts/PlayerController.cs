@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision coll)
     {
-        if (coll.gameObject.tag == "Asteroid")
+        if (coll.gameObject.tag == "Asteroid" || coll.gameObject.tag == "EnemyProjectile" || coll.gameObject.tag == "Boss")
         {
             if (shieldHealth == 0)
             {

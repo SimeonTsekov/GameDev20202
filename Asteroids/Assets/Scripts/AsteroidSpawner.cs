@@ -34,6 +34,11 @@ public class AsteroidSpawner : MonoBehaviour {
     {
         if (Instance == null)
         {
+            if (GameStateController.Instance.Level % 5 == 0)
+            {
+                Destroy(gameObject);
+            }
+
             Instance = this;
         }
         else

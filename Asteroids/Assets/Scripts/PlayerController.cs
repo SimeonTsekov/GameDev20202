@@ -42,10 +42,7 @@ public class PlayerController : MonoBehaviour
         {
             if (GameStateController.Instance.multishotUpgrades[0])
             {
-                for(int i=0; i<3; i++)
-                {
-                    weapon.Shoot(0.33f);
-                }
+                weapon.Shoot(0.33f);
             }
             else
             {
@@ -89,7 +86,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision coll)
     {
-        if (coll.gameObject.tag == "Asteroid")
+        if (coll.gameObject.tag == "Asteroid" || coll.gameObject.tag == "EnemyProjectile" || coll.gameObject.tag == "Boss")
         {
             if (shieldHealth == 0)
             {

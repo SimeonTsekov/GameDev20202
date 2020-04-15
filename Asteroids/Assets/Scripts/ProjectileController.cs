@@ -26,11 +26,12 @@ public class ProjectileController : MonoBehaviour
         {
             Physics.IgnoreCollision(this.GetComponent<Collider>(), GameObject.FindWithTag("Shield").GetComponent<Collider>());
         }
+       
     }
 
     void OnCollisionEnter(Collision coll)
     {
-        if (coll.gameObject.tag == "Asteroid")
+        if (coll.gameObject.tag == "EnemyProjectile" || coll.gameObject.tag == "Asteroid" || coll.gameObject.tag == "Boss")
         {
             Destroy(gameObject);
         }

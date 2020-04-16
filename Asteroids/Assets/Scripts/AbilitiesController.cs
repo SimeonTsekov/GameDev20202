@@ -11,6 +11,7 @@ public class AbilitiesController : MonoBehaviour
     public Image cooldownImage;
     public float cooldown = 0;
     public int health = 0;
+    public int shieldTier = 0;
     public static AbilitiesController Instance { get; private set; }
 
     void Awake()

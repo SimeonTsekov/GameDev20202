@@ -7,6 +7,8 @@ public class PlayerData
 {
     public uint playerOre;
     public uint level;
+    public int shieldTier;
+    public int blastwaveTier;
     public bool[] shieldUpgrades;
     public bool[] blastwaveUpgrades;
     public bool[] multishotUpgrades;
@@ -18,5 +20,7 @@ public class PlayerData
         shieldUpgrades = controller.shieldUpgrades;
         blastwaveUpgrades = controller.blastwaveUpgrades;
         multishotUpgrades = controller.multishotUpgrades;
+        shieldTier = controller.shieldTier;
+        blastwaveTier = controller.blastwaveTier;
     }
 }

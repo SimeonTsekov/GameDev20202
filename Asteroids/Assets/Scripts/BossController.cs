@@ -49,13 +49,13 @@ public class BossController : MonoBehaviour
             transform.LookAt(player.transform);
         }
 
-        if (GameStateController.Instance.Level / 2 > 5)
+        if (GameStateController.Instance.Level % 10 != 0)
         {
-            weapon.Shoot(5);
+            weapon.Shoot(5.0f);
         }
         else
         {
-            weapon.Shoot(GameStateController.Instance.Level / 2);
+            weapon.Shoot(0.5f);
         }
 
         float horizontalAxis = random;

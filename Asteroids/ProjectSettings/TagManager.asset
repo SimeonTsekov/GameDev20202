@@ -12,6 +12,7 @@ TagManager:
   - Tester
   - Boss
   - EnemyProjectile
+  - MainMenu
   layers:
   - Default
   - TransparentFX

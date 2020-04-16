@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     public int shieldHealth = 0;
     public bool shieldExisting;
     public GameObject blastwaveMk1;
-    public uint blastwaveCooldown = 0;
     public AudioClip blastwave;
     public GameObject DestructionFx;
     public float DestructionFXTimeToLive = 4;
@@ -24,10 +23,10 @@ public class PlayerController : MonoBehaviour
             shieldMk1 = Instantiate(shieldMk1, transform.position, transform.rotation);
             shieldMk1.transform.parent = transform;
             shieldHealth = 1;
+            AbilitiesController.Instance.SetShieldHealth(shieldHealth);
             shieldExisting = true;
         }
 
-        InvokeRepeating("DecreaseBlastwaveCooldown", 1.0f, 1.0f);
     }
 
     void Update()
@@ -50,11 +49,11 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetButton("Fire2") && blastwaveCooldown == 0 && GameStateController.Instance.blastwaveUpgrades[0])
+        if (Input.GetButton("Fire2") && AbilitiesController.Instance.cooldown <= 0 && GameStateController.Instance.blastwaveUpgrades[0])
         {
             AudioSource.PlayClipAtPoint(blastwave, transform.position);
             blastwaveMk1 = Instantiate(blastwaveMk1, transform.position, transform.rotation);
-            blastwaveCooldown = 10;
+            AbilitiesController.Instance.SetCooldown();
         }
 
         float verticalAxis = Input.GetAxis("Vertical");
@@ -92,8 +91,11 @@ public class PlayerController : MonoBehaviour
             {
                 DestroyPlayer();
             }
-
-            shieldHealth--;
+            else
+            {
+                shieldHealth--;
+                AbilitiesController.Instance.DecreaseShieldHealth();
+            }
         }     
     }
 
@@ -107,11 +109,4 @@ public class PlayerController : MonoBehaviour
         GameStateController.Instance.OnPlayerDestroyed();
     }
 
-    void DecreaseBlastwaveCooldown()
-    {
-        if (blastwaveCooldown > 0)
-        {
-            blastwaveCooldown--;
-        }
-    }
 }

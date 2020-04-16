@@ -38,7 +38,7 @@ public class LevelController : MonoBehaviour
         if (asteroidCount == 0 && bossCount == 0)
         {
             Debug.Log("End");
-            EndLevel();
+            Invoke("EndLevel", 1.0f);
         }
     }
 

@@ -14,6 +14,7 @@ public class GameStateController : MonoBehaviour
     public bool[] blastwaveUpgrades = new bool[3];
     public bool[] multishotUpgrades = new bool[3];
     public uint PlayerOre = 0;
+    public GameObject abilities;
     public static GameStateController Instance { get; private set; }
     
     void Awake()
@@ -22,6 +23,9 @@ public class GameStateController : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            AbilitiesController.Instance.SetShieldInactive();
+            AbilitiesController.Instance.SetBlastwaveInactive();
+            AbilitiesController.Instance.SetRapidFireInactive();
 
             if (SaveSystem.LoadPlayer() != null)
             {
@@ -60,7 +64,8 @@ public class GameStateController : MonoBehaviour
         {
             SoundController.Instance.OnMusicMute();
         }
-        
+
+        Invoke("SetAbilitiesActive", 0.1f);
         SceneManager.LoadScene(MainScene);
     }
 
@@ -84,11 +89,14 @@ public class GameStateController : MonoBehaviour
 
     public void OnPlayerDestroyed()
     {
+        AbilitiesController.Instance.RemoveCooldown();
         Invoke("OnGameOver", GameOverDelay);
     }
 
     public void OnPassLevel()
     {
+        SetAbilitiesInactive();
+        AbilitiesController.Instance.RemoveCooldown();
         PlayerOre += 50 * Level;
         Level++;
         SoundController.Instance.OnStopMusic();
@@ -136,8 +144,37 @@ public class GameStateController : MonoBehaviour
 
     private void OnGameOver()
     {
+        SetAbilitiesInactive();
         SaveSystem.SavePlayer(this);
         SoundController.Instance.OnStopMusic();
         SceneManager.LoadScene(GameOverScene);
+    }
+
+    void SetAbilitiesActive()
+    {
+        if (shieldUpgrades[0])
+        {
+            Debug.Log(true);
+            AbilitiesController.Instance.SetShieldActive();
+        }
+
+        if (blastwaveUpgrades[0])
+        {
+            Debug.Log(true);
+            AbilitiesController.Instance.SetBlastwaveActive();
+        }
+
+        if (multishotUpgrades[0])
+        {
+            Debug.Log(true);
+            AbilitiesController.Instance.SetRapidFireActive();
+        }
+    }
+
+    void SetAbilitiesInactive()
+    {
+        AbilitiesController.Instance.SetShieldInactive();
+        AbilitiesController.Instance.SetBlastwaveInactive();
+        AbilitiesController.Instance.SetRapidFireInactive();
     }
 }

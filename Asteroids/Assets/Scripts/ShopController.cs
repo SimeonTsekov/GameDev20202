@@ -20,6 +20,7 @@ public class ShopController : MonoBehaviour
     {
         if (GameStateController.Instance.PlayerOre >= 500 && !GameStateController.Instance.shieldUpgrades[0])
         {
+            AbilitiesController.Instance.SetShieldActive();
             GameStateController.Instance.PurchaseShieldMk1();
         }
     }
@@ -28,6 +29,7 @@ public class ShopController : MonoBehaviour
     {
         if (GameStateController.Instance.PlayerOre >= 1000 && !GameStateController.Instance.blastwaveUpgrades[0])
         {
+            AbilitiesController.Instance.SetBlastwaveActive();
             GameStateController.Instance.PurchaseBlastwaveMk1();
         }
     }
@@ -36,6 +38,7 @@ public class ShopController : MonoBehaviour
     {
         if (GameStateController.Instance.PlayerOre >= 1000 && !GameStateController.Instance.multishotUpgrades[0])
         {
+            AbilitiesController.Instance.SetRapidFireActive();
             GameStateController.Instance.PurchaseMultishotMk1();
             Destroy(rapid);
         }

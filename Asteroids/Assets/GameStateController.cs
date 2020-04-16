@@ -15,6 +15,7 @@ public class GameStateController : MonoBehaviour
     public bool[] multishotUpgrades = new bool[3];
     public uint PlayerOre = 0;
     public int shieldTier = 0;
+    public int blastwaveTier = 0;
     public GameObject abilities;
     public static GameStateController Instance { get; private set; }
     
@@ -36,6 +37,7 @@ public class GameStateController : MonoBehaviour
                 blastwaveUpgrades = SaveSystem.LoadPlayer().blastwaveUpgrades;
                 multishotUpgrades = SaveSystem.LoadPlayer().multishotUpgrades;
                 shieldTier = SaveSystem.LoadPlayer().shieldTier;
+                blastwaveTier = SaveSystem.LoadPlayer().blastwaveTier;
             }
         }
         else
@@ -144,8 +146,25 @@ public class GameStateController : MonoBehaviour
 
     public void PurchaseBlastwaveMk1()
     {
+        blastwaveTier++;
         blastwaveUpgrades[0] = true;
         PlayerOre -= 1000;
+        SaveSystem.SavePlayer(this);
+    }
+
+    public void PurchaseBlastwaveMk2()
+    {
+        blastwaveTier++;
+        blastwaveUpgrades[1] = true;
+        PlayerOre -= 2000;
+        SaveSystem.SavePlayer(this);
+    }
+
+    public void PurchaseBlastwaveMk3()
+    {
+        blastwaveTier++;
+        blastwaveUpgrades[2] = true;
+        PlayerOre -= 3000;
         SaveSystem.SavePlayer(this);
     }
 

@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public int shieldHealth = 0;
     public bool shieldExisting;
     public GameObject blastwaveMk1;
+    public GameObject blastwaveMk2;
+    public GameObject blastwaveMk3;
     public AudioClip blastwave;
     public GameObject DestructionFx;
     public float DestructionFXTimeToLive = 4;
@@ -65,11 +67,26 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetButton("Fire2") && AbilitiesController.Instance.cooldown <= 0 && GameStateController.Instance.blastwaveUpgrades[0])
+        if (Input.GetButton("Fire2") && AbilitiesController.Instance.cooldown <= 0)
         {
-            AudioSource.PlayClipAtPoint(blastwave, transform.position);
-            blastwaveMk1 = Instantiate(blastwaveMk1, transform.position, transform.rotation);
-            AbilitiesController.Instance.SetCooldown();
+            if (GameStateController.Instance.blastwaveTier == 1)
+            {
+                AudioSource.PlayClipAtPoint(blastwave, transform.position);
+                blastwaveMk1 = Instantiate(blastwaveMk1, transform.position, transform.rotation);
+                AbilitiesController.Instance.SetCooldown();
+            }
+            else if (GameStateController.Instance.blastwaveTier == 2)
+            {
+                AudioSource.PlayClipAtPoint(blastwave, transform.position);
+                blastwaveMk2 = Instantiate(blastwaveMk2, transform.position, transform.rotation);
+                AbilitiesController.Instance.SetCooldown();
+            }
+            else if (GameStateController.Instance.blastwaveTier == 3)
+            {
+                AudioSource.PlayClipAtPoint(blastwave, transform.position);
+                blastwaveMk3 = Instantiate(blastwaveMk3, transform.position, transform.rotation);
+                AbilitiesController.Instance.SetCooldown();
+            }
         }
 
         float verticalAxis = Input.GetAxis("Vertical");

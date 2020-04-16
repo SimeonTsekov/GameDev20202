@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class ShopController : MonoBehaviour
 {
-    public GameObject rapid;
-
     public void OnLoadMenu()
     {
         GameStateController.Instance.LoadMenu();
@@ -35,10 +33,18 @@ public class ShopController : MonoBehaviour
 
     public void OnPurchaseBlastwaveMk1()
     {
-        if (GameStateController.Instance.PlayerOre >= 1000 && !GameStateController.Instance.blastwaveUpgrades[0])
+        if (GameStateController.Instance.PlayerOre >= 1000 && GameStateController.Instance.blastwaveTier == 0)
         {
             AbilitiesController.Instance.SetBlastwaveActive();
             GameStateController.Instance.PurchaseBlastwaveMk1();
+        }
+        else if (GameStateController.Instance.PlayerOre >= 2000 && GameStateController.Instance.blastwaveTier == 1)
+        {
+            GameStateController.Instance.PurchaseBlastwaveMk2();
+        }
+        else if (GameStateController.Instance.PlayerOre >= 3000 && GameStateController.Instance.blastwaveTier == 2)
+        {
+            GameStateController.Instance.PurchaseBlastwaveMk3();
         }
     }
 
@@ -48,7 +54,6 @@ public class ShopController : MonoBehaviour
         {
             AbilitiesController.Instance.SetRapidFireActive();
             GameStateController.Instance.PurchaseMultishotMk1();
-            Destroy(rapid);
         }
     }
 

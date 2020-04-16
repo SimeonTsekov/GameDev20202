@@ -18,7 +18,23 @@ public class PlayerController : MonoBehaviour
     {
         AsteroidSpawner.Instance.RegisterPlayer(gameObject);
 
-        if (GameStateController.Instance.shieldUpgrades[0])
+        if (GameStateController.Instance.shieldUpgrades[2])
+        {
+            shieldMk1 = Instantiate(shieldMk1, transform.position, transform.rotation);
+            shieldMk1.transform.parent = transform;
+            shieldHealth = 3;
+            AbilitiesController.Instance.SetShieldHealth(shieldHealth);
+            shieldExisting = true;
+        }
+        else if (GameStateController.Instance.shieldUpgrades[1])
+        {
+            shieldMk1 = Instantiate(shieldMk1, transform.position, transform.rotation);
+            shieldMk1.transform.parent = transform;
+            shieldHealth = 2;
+            AbilitiesController.Instance.SetShieldHealth(shieldHealth);
+            shieldExisting = true;
+        }
+        else if (GameStateController.Instance.shieldUpgrades[0])
         {
             shieldMk1 = Instantiate(shieldMk1, transform.position, transform.rotation);
             shieldMk1.transform.parent = transform;

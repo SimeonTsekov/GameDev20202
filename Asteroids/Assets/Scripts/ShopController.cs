@@ -18,10 +18,18 @@ public class ShopController : MonoBehaviour
     
     public void OnPurchaseShieldMk1()
     {
-        if (GameStateController.Instance.PlayerOre >= 500 && !GameStateController.Instance.shieldUpgrades[0])
+        if (GameStateController.Instance.PlayerOre >= 500 && GameStateController.Instance.shieldTier == 0)
         {
             AbilitiesController.Instance.SetShieldActive();
             GameStateController.Instance.PurchaseShieldMk1();
+        } 
+        else if(GameStateController.Instance.PlayerOre >= 1000 && GameStateController.Instance.shieldTier == 1)
+        {
+            GameStateController.Instance.PurchaseShieldMk2();
+        }
+        else if (GameStateController.Instance.PlayerOre >= 1500 && GameStateController.Instance.shieldTier == 2)
+        {
+            GameStateController.Instance.PurchaseShieldMk3();
         }
     }
 

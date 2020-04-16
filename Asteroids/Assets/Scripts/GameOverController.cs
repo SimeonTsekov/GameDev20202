@@ -15,13 +15,28 @@ public class GameOverController : MonoBehaviour
         GameStateController.Instance.QuitGame();
     }
 
-    public void OnResetMinerals()
+    public void OnAchievements()
     {
-        GameStateController.Instance.ResetOre();
+        AchievementsController.Instance.OnAchievements();
     }
     
     public void OnResetLevel()
     {
         GameStateController.Instance.ResetLevel();
+    }
+
+    public void OnShop()
+    {
+        GameStateController.Instance.LoadShop();
+    }
+
+    public void OnRazeGame()
+    {
+        GameStateController.Instance.OnRazeGame();
+    }
+
+    public void OnSettings()
+    {
+        SettingsController.Instance.OnSettings();
     }
 }

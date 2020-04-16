@@ -7,6 +7,12 @@ TagManager:
   - Enemy
   - Asteroid
   - Projectile
+  - Shield
+  - Blastwave
+  - Tester
+  - Boss
+  - EnemyProjectile
+  - MainMenu
   layers:
   - Default
   - TransparentFX
@@ -16,8 +22,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Asteroid
+  - Boss
   - 
   - 
   - 

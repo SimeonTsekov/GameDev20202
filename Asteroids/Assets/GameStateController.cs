@@ -79,12 +79,6 @@ public class GameStateController : MonoBehaviour
         Application.Quit();
     }
 
-    public void ResetOre()
-    {
-        PlayerOre = 3500;
-        SaveSystem.SavePlayer(this);
-    }
-
     public void ResetLevel()
     {
         Level = 5;

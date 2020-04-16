@@ -15,9 +15,9 @@ public class GameOverController : MonoBehaviour
         GameStateController.Instance.QuitGame();
     }
 
-    public void OnResetMinerals()
+    public void OnAchievements()
     {
-        GameStateController.Instance.ResetOre();
+        AchievementsController.Instance.OnAchievements();
     }
     
     public void OnResetLevel()
